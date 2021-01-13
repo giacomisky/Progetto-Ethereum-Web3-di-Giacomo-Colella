@@ -1,0 +1,106 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Home Page</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"> 
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body onload="setInterval(reward, 3600000); setInterval(updTime, 1000);">
+
+       <div class='topnav' id="myTopnav">
+            <h4>ENVIRONMENT TOKENS</h4>
+            <div class="right_menu">
+                <a class='go_out' href="{% url 'logOut' %}"><h4>Logout</h4></a>
+            </div>
+        </div>
+        <h4 id="datetime" class='date_time'></h4>
+        <hr>
+        <div class="main-contain">
+            <div class="left-side-cont">
+                <div class="add-new-prod">
+                    <div class="tit-add">
+                        <h3>WALLET of GreenToken</h3>
+                    </div>
+                    <hr>
+                    <div class='cont-bal'>
+                        <h4 id='balance'><strong>Balance: </strong></h4><h4 id='bal_val'>{{infoWallet.balance}}</h4>
+                    </div>
+                    <h4 id='address'><strong>Address: </strong></h4><h4 id='add'>{{infoWallet.address}}</h4>
+
+                    <hr>
+                    <div class="detail">
+                        <h3>How does it works?</h3>
+                        <p>Every <strong> 4 Watt</strong> you produce you get a reward of <strong> 1 GreenToken </strong><br>
+                        On average, a single solar panel produces about 0.5 watts per day.<br>
+                        Considering the hours of sunshine that are around 13 hours, about 0.04 watts of power are produced in one hour.<br>
+                        Let's take a 3kw photovoltaic system that can produce about 3400-4000w of power in a year, <br>
+                        or the energy needs of an average family, we get a profit of about 850-1000 GreenToken</p>
+                    </div>
+                    <hr>
+                    <div class="optio">
+                        <h3>Not to wait too long</h3>
+                        <p>Updates the system every...<br>
+                        To select another interval, refresh this page please.</p>
+                        <button class="ui inverted green button" onclick="setInterval(reward, 1000);">1 second</button>
+                        <button class="ui inverted green button" onclick="setInterval(reward, 5000);">5 seconds</button>
+                        <button class="ui inverted green button" onclick="setInterval(reward, 60000);">1 minute</button>
+                        <button class="ui inverted green button" onclick="setInterval(reward, 3600000);">Return to 1 hour</button>
+                    </div>
+
+                </div>
+                
+            </div>
+            
+
+            <div class="right-side-cont">
+                <div class="cont_wat">
+                    <h4 id='prodWa' class="watt_pro">Produced watts: {{userInfo.prodWatt}}</h4>
+                </div>
+            
+                <img src="../../static/images/howtoworks.gif" style="width: 100%;">
+
+                <h3>THE MORE YOU PRODUCE THE MORE YOU EARN</h3>
+            </div>
+
+        </div>
+        
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        function reward(){
+            $.ajax({
+                type: 'GET',
+                url: 'check-reward/',
+                data: {neWatt: '0.04'},
+                dataType: "json",
+                success: function (data){
+                    console.log(data);
+                    document.getElementById('bal_val').innerHTML = (data['balance'] + ' GT');
+                    document.getElementById('add').innerHTML = data['address'];
+                    document.getElementById('prodWa').innerHTML = ('Produced watts: '+ data['prodWatt']);
+                },
+                failure: function(){
+                    console.log('error')
+                    alert('failure')
+                }
+            });
+        }
+    </script>
+    <script>
+        function updTime(){
+           var dt = new Date();
+            document.getElementById('datetime').innerHTML = dt.toLocaleTimeString(); 
+        }
+        
+    </script>
+</html>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Login Page</title>
+        <link rel="stylesheet" href="{% static 'css/log.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body onload="document.getElementById('id02').style.display ='none'; document.getElementById('id01').style.display ='block';">
+
+        <div class='main-cont'>
+            <!-- form login-->
+            
+            <div id="id01" class="modal">
+               
+              
+                <!-- Modal Content -->
+                <form class="ui form" id='logForm' method="POST">
+                    {% csrf_token %}
+                    <div class="imgcontainer">
+                        <img src="../../static/images/user.png" alt="Avatar" class="avatar">
+                    </div>
+
+                    <div class="container">
+                        <div class="six field">
+                            <label for="uname"><h4 class='ui header'>Username</h4></label>
+                            <input type="text" placeholder="Enter Username" name="uname" required>
+                        </div>
+                        <div class="six field">
+                            <label for="psw"><h4 class='ui header'>Password</h4></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                        </div>
+                        <div class='but-cont'>
+                            <button class='ui inverted green button' type="submit">Login</button>
+                        </div>
+                    </div>
+              
+                    <div class="container" style="background-color:#f1f1f1;border-radius:20px;">
+                        <div class="but-cont2">
+                            <span class="psw">Forgot <a href="#">password?</a></span>
+                        </div>
+                    </div>
+
+
+                    <div class="container" style=align-items:center;>
+                        <div>
+                            <label><h4 class='ui header'>Not subscribed yet?<a onclick="goToSub()"> Subscribe here!</a></h4></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- form signin-->
+            <div id="id02" class="modal2">
+                
+              
+                <!-- Modal Content -->
+                <form class="ui form" id='signForm' method="POST">
+                    {% csrf_token %}
+                    <div class="imgcontainer">
+                        <img src="../../static/images/user.png" alt="Avatar" class="avatar">
+                    </div>
+              
+                    <div class="container2">
+                        <div class="six field">
+                            <label for="uname"><h4 class='ui header'>Username</h4></label>
+                            <input type="text" placeholder="Enter Username" name="uname" required>
+                        </div>
+
+                        <div class="six field">
+                            <label for="email"><h4 class='ui header'>Email</h4></label>
+                            <input type="email" placeholder="Enter Email" name="email" required>
+                        </div>
+                        
+                        <div class="six field">
+                            <label for="psw"><h4 class='ui header'>Password</h4></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                        </div>
+
+                        <div class="six field">
+                            <label for="psw2"><h4 class='ui header'>Repat password</h4></label>
+                            <input type="password" placeholder="Enter Password again" name="psw2" required>
+                        </div>
+
+                        <div class="field">
+                            <div class="ui checkbox">
+                              <input type="checkbox" required>
+                              <label>I agree to the Terms and Conditions</label>
+                            </div>
+                        </div>
+
+                        <div class='but-cont'>
+                            <button class='ui inverted green button' type="submit">Signin</button>
+                        </div>
+                    </div>
+              
+                    <div class="container" style=align-items:center;>
+                        <div>
+                            <label><h4 class='ui header'>Are you just subscribed?? <a href=''>Login</a></h4></label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <a href='https://www.freepik.com/vectors/flower'>Flower vector created by macrovector - www.freepik.com</a>
+    </body>
+    <script>
+        function goToSub(){
+            document.getElementById('id01').style.display = 'none';
+            document.getElementById('id02').style.display = 'block';
+        }
+    </script>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>
+{% endblock %}

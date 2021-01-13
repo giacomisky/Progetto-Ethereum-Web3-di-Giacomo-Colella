@@ -1,0 +1,187 @@
+
+
+@media screen and (max-width: 420px){
+    .topnav{
+        background-color: white;
+        width: 100%;
+        height: 4%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .topnav h4{
+        color: green;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .right_menu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+    }
+
+    
+    .go_out h4{
+        padding: 10px;
+        text-decoration: none;
+        transition-duration: 0.3s;
+    }
+
+    .go_out h4:hover{
+        background-color: green;
+        color: white;
+    }
+
+    .main-contain{
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+    }
+
+    .left-side-cont{
+        height: min-content;
+        width: 100%;
+        
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tit-add h3{
+        text-align: center;
+        color:blue
+    }
+
+    .add-new-prod{
+        border: 2px solid green;
+        width: 100%;
+        height: 100%;
+        margin: 10px;
+        border-radius: 15px;
+        padding: 30px;
+        
+    }
+
+    .add-new-prod h4{
+        text-align: center;
+    }
+
+    .launc-plat{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    
+
+    .right-side-cont{
+        height: 80%;
+        width: 40%;
+        padding: 20px;
+    }
+
+    
+}
+
+
+
+@media screen and (min-width: 961px){
+    
+    .topnav{
+        background-color: white;
+        height: 4%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .topnav h4{
+        color: green;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .right_menu{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 20%;
+    }
+
+    
+    .go_out h4{
+        padding: 10px;
+        text-decoration: none;
+        transition-duration: 0.3s;
+    }
+
+    .go_out h4:hover{
+        background-color: green;
+        color: white;
+    }
+
+    .main-contain{
+        
+        height: 96%;
+        display: flex;
+        flex-direction: row;
+        padding: 40px;
+    }
+
+    .left-side-cont{
+        height: min-content;
+        width: 40%;
+        
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tit-add h3{
+        text-align: center;
+        color:blue
+    }
+
+    .add-new-prod{
+        border: 2px solid green;
+        width: 100%;
+        height: 100%;
+        margin: 10px;
+        border-radius: 15px;
+        padding: 30px;
+        
+    }
+
+    .add-new-prod h4{
+        text-align: center;
+    }
+
+    .launc-plat{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    
+
+    .right-side-cont{
+        height: 80%;
+        width: 40%;
+        padding: 20px;
+    }
+    
+
+    
+
+   
+
+}

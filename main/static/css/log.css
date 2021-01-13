@@ -1,0 +1,294 @@
+@media screen and (max-width: 420px){
+  .main-cont{
+    display: flex;
+    background-image: url('../../static/images/sfondo.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+/*popppppppppppppppppppppp*/
+/* The Modal (background) */
+.modal {
+display: flex; /* Hidden by default */
+visibility: visible;
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+margin-top: 50px;
+width: 80%; /* Full width */
+height: 80%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+
+border-radius: 20px;
+}
+
+.modal2{
+display: flex; /* Hidden by default */
+justify-content: center;
+align-items: center;
+margin: 0 auto;
+margin-top: 50px;
+width: 80%; /* Full width */
+height: 80%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+
+border-radius: 20px;
+}
+
+.imgcontainer{
+  display: flex;
+  justify-content: center;
+}
+
+/* Modal Content/Box */
+#logForm{
+  margin-bottom: 40px;
+  padding: 20px;
+}
+
+
+
+#signForm{
+margin-bottom: 40px;
+padding: 20px;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  
+}
+
+.container2{
+display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.container.sixfield{
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+
+.container label{
+  color: green;
+}
+
+.but-cont{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.but-cont2{
+display: flex;
+justify-content: space-around;
+align-items: center;
+}
+
+
+
+/* The Close Button */
+.close {
+/* Position it in the top right corner outside of the modal */
+position: absolute;
+right: 25px;
+top: 0;
+color: #000;
+font-size: 35px;
+font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+color: red;
+cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+-webkit-animation: animatezoom 0.6s;
+animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+from {-webkit-transform: scale(0)}
+to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+from {transform: scale(0)}
+to {transform: scale(1)}
+}
+}
+
+
+
+
+
+
+
+@media screen and (min-width: 421px){
+
+}
+
+
+
+
+
+
+
+
+
+@media screen and (min-width: 961px){
+    .main-cont{
+        display: flex;
+        background-image: url('../../static/images/sfondo.jpg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    
+
+    /*popppppppppppppppppppppp*/
+    /* The Modal (background) */
+.modal {
+    display: flex; /* Hidden by default */
+    visibility: visible;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 50%; /* Full width */
+    height: 80%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    
+    border-radius: 20px;
+  }
+
+  .modal2{
+    display: flex; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 50%; /* Full width */
+    height: 80%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+   
+    border-radius: 20px;
+  }
+
+  .imgcontainer{
+      display: flex;
+      justify-content: center;
+  }
+  
+  /* Modal Content/Box */
+  #logForm{
+      margin-bottom: 40px;
+      padding: 20px;
+  }
+
+ 
+
+  #signForm{
+    margin-bottom: 40px;
+    padding: 20px;
+  }
+  
+  .container{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 30px;
+      padding: 30px;
+  }
+
+  .container2{
+    display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: 30px;
+      width: 100%;
+  }
+
+  .container.sixfield{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container label{
+      color: green;
+  }
+
+  .but-cont{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .but-cont2{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+  
+
+  /* The Close Button */
+  .close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  /* Close button on hover */
+  .close:hover,
+  .close:focus {
+    color: red;
+    cursor: pointer;
+  }
+  
+  /* Add Zoom Animation */
+  .animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+  }
+  
+  @-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+  }
+  
+  @keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+  }
+
+}

@@ -1,0 +1,71 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Admin Page</title>
+        <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+
+       <div class='topnav' id="myTopnav">
+            <h4>DASHBOARD</h4>
+            <div class="right_menu">
+                <a class='go_out' href="{% url 'logOut' %}"><h4>Logout</h4></a>
+            </div>
+       </div>
+
+       <div class="main-contain">
+           <div class="left-side-cont">
+                <div class="add-new-prod">
+                    <div class="tit-add">
+                        <h3>Admin Wallet</h3>
+                    </div>
+                    <hr>
+                    <h4 id='balance'>Balance: <strong>{{infoAd.balance}}</strong> GT</h4>
+                    <h4 id='address'>Address: <strong>{{infoAd.address}}</strong></h4>
+
+                </div>
+
+                <table class="ui small green celled table" id='table'>
+                    <thead>
+                      <tr>
+                        <th>Owner</th>
+                        <th>Address</th>
+                      <th>Balance</th>
+                    </tr></thead>
+                    <tbody>
+                        {% for item in list %}
+                      <tr>
+                          <td data-label="Owner">{{item.owner_id}}</td>
+                        <td data-label="Address">{{item.address}}</td>
+                        <td data-label="Balance">{{item.balance}}</td>
+                    </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                
+           </div>
+
+           <div class="right-side-cont">
+            <img src="../../static/images/howtoworks.gif" style="width: 100%;">
+           </div>
+
+       </div>
+        
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        function dis(id){
+            id.disabled = true;
+        }
+    </script>
+</html>
+{% endblock %}
