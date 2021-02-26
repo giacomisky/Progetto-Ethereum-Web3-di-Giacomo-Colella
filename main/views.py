@@ -7,10 +7,8 @@ from django.http import JsonResponse
 import json
 from . import utils
 from .models import Customer, Wallet
-
+from shippingToken.settings import ADDR_CONTRACT
 import math
-
-
 
 @login_required(login_url='/login')
 def homePage(request):
@@ -21,6 +19,7 @@ def homePage(request):
         
         thisWallet = Wallet.objects.filter(owner = thisUser['id']).values()
         detWall = thisWallet[0]
+        #print(detWall['balance'])
         
         return render(request, 'main/home_page.html', {'infoWallet': detWall, 'userInfo':thisUser})
 
@@ -30,10 +29,17 @@ def adminPage(request):
     if request.method == 'POST':
         pass
     else:
-        infoWallet = Wallet.objects.all().values()
-        admin = utils.getAdminInfo()
-        return render(request, 'main/admin_page.html', {'infoAd':admin, 'list':infoWallet})
-        
+        try:
+            #this is procecced if the contract is just runned
+            infoWallet = Wallet.objects.all().values()
+            print(infoWallet)
+            admin = utils.getAdminInfo()
+            print("ora siamo qui")
+            return render(request, 'main/admin_page.html', {'infoAd':admin, 'list':infoWallet})
+        except:
+            
+            admin = utils.getAdminInfo()
+            return render(request, 'main/admin_page.html', {'infoAd':admin})
 
 
 #reward the user for every produced watt
@@ -45,18 +51,23 @@ def checkReward(request):
     thisUser = Customer.objects.filter(user=request.user).values()[0]
     use = Customer.objects.get(user=request.user)
     wattRet = thisUser['prodWatt']
-    print('counter', use.counter)
-    print('watt prodotti', use.prodWatt)
+    #print('counter', use.counter)
+    #print('watt prodotti', use.prodWatt)
 
     if int(wattRet) >= 4:
         thisWallet = Wallet.objects.filter(owner = thisUser['id']).values()
         wall = Wallet.objects.get(owner=thisUser['id'])
         detWall = thisWallet[0]
-        upB = utils.receiveToken(detWall['address'])
+        try:
+            upB = utils.receiveToken(detWall['address'])
+        except:
+            wall.state = False
+            wall.save()
+            return
         
         addr = detWall['address']
 
-        #recuperare query set originale per poterlo cambiare
+        #retrieve the original queryset to use inside data
         use.prodWatt = 0
         use.counter += float(dataGet['neWatt'])
         use.earnedToken += float(upB)
@@ -74,6 +85,7 @@ def checkReward(request):
         thisWallet = Wallet.objects.filter(owner = thisUser['id']).values()
         detWall = thisWallet[0]
 
+	#update field into database
         use.counter+=float(dataGet['neWatt'])
         use.prodWatt+=float(dataGet['neWatt'])
         use.save()
@@ -83,6 +95,23 @@ def checkReward(request):
         this = Customer.objects.filter(user=request.user).values()[0]
         data = {'balance': balan, 'address':detWall['address'], 'prodWatt': this['prodWatt']}
         return JsonResponse(data)
+
+
+def checkWaitWall(request):
+    retWall = Wallet.objects.filter(state=False).values()
+    if not retWall.exists():
+        #print(retWall)
+        data = {'check': False}
+        return JsonResponse(data)
+    else:
+        info = {}
+        for item in retWall:
+            utils.receiveToken(item['address'])
+        
+        data = {"check": True}
+        return JsonResponse(data)
+
+    
 
 
 
@@ -102,6 +131,7 @@ def loginC(request):
                         return redirect('/')
                 else:
                     print("errore")
+                    return render(request, "main/login.html")
             
             else:
                 username = form['uname']
@@ -115,7 +145,7 @@ def loginC(request):
                     newUser = Customer.objects.create(user=user)
 
                     myWallet = utils.createNewWallet(passToCrypt)
-                    newWallet = Wallet.objects.create(owner=newUser, balance=myWallet['balance'], privateKey=myWallet['cryptKey'], address=myWallet['address'])
+                    newWallet = Wallet.objects.create(owner=newUser, balance=myWallet['balance'], privateKey=myWallet['cryptKey'], address=myWallet['address'], state=True)
                     
                     newUser.save()
                     newWallet.save()
@@ -127,7 +157,8 @@ def loginC(request):
         return render(request, 'main/login.html', {})
 
 
-
 def logOut(request):
     logout(request)
     return redirect('/login')
+
+

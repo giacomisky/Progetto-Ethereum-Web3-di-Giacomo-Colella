@@ -8,9 +8,14 @@ class Customer(models.Model):
     prodWatt = models.FloatField(default=0)
     counter = models.FloatField(default=0)
 
+
 class Wallet(models.Model):
     owner = models.ForeignKey(Customer, on_delete=models.CASCADE)
     balance = models.FloatField(blank=True, default=None)
     privateKey = models.CharField(blank=True, max_length=1600, default=None)
     address = models.CharField(blank=True, max_length=800, default=None)
+    state = models.BooleanField(default=True)
 
+class Contract(models.Model):
+    abiC = models.CharField(max_length=600000)
+    addressC = models.CharField(max_length=60)

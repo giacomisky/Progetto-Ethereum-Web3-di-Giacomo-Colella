@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ADDR_CONTRACT = ''
+
 
 # Application definition
 

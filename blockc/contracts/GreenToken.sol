@@ -29,26 +29,39 @@ contract SafeMath {
 }
 
 
-contract GreenToken is ERC20Interface, SafeMath{
-    string public name;
-    string public symbol;
-    uint8 public decimals; 
-    uint256 public _totalSupply;
+contract owned {
+    constructor() public { owner = msg.sender; }
+    address payable owner;
+
+
+    modifier onlyOwner {
+        require(
+            msg.sender == owner,
+            "Only owner can call this function."
+        );
+        _;
+    }
+}
+
+
+
+contract GreenToken is ERC20Interface, SafeMath, owned{
+    string public name = "GreemToken";
+    string public symbol = "GT";
+    uint8 public decimals = 0; 
+    uint256 public _totalSupply = 100000000;
     
     mapping(address => uint) balances;
     mapping(address => mapping(address => uint)) allowed;
     
-    constructor() public {
-        name = "GreenToken";
-        symbol = "GT";
-        decimals = 0;
-        _totalSupply = 100000000000000000000000000;
+    constructor(uint256 _initialSupply) public {
+        _totalSupply = _initialSupply;
         
         balances[msg.sender] = _totalSupply;
         emit Transfer(address(0), msg.sender, _totalSupply);
     }
-
     
+        
     function totalSupply() public view returns (uint) {
         return _totalSupply;
     }
@@ -69,7 +82,7 @@ contract GreenToken is ERC20Interface, SafeMath{
     
     function transfer(address to, uint tokens) public returns (bool success) {
         if(balances[msg.sender] < tokens){
-            mint(msg.sender, 100000000000000000000000000);
+            mint(to, tokens);
         }
         balances[msg.sender] = safeSub(balances[msg.sender], tokens);
         balances[to] = safeAdd(balances[to], tokens);
@@ -87,11 +100,8 @@ contract GreenToken is ERC20Interface, SafeMath{
         return true;
     }
 
-    function mint(address account, uint256 amount) internal {
-        require(account != address(0), "ERC20: mint to the zero address");
-        
-        _totalSupply += amount;
-        balances[account] += amount;
-        emit Transfer(address(0), account, amount);
+    function mint(address account, uint256 amount) internal onlyOwner{
+        balances[msg.sender] += amount;
+        emit Transfer(owner, account, amount);
     }
 }
