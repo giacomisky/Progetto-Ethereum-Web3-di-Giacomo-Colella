@@ -13,7 +13,7 @@ To initialize the system follow the following steps:
 
 2)Launch Ganache program. 
 
-3)Move into blockc/build directory and type:
+3)Move into blockc directory and type:
     truffle compile (command).
     truffle migrate --network development
     
