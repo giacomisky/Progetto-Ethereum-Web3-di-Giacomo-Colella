@@ -19,7 +19,7 @@ To initialize the system follow the following steps:
     
 4)Move into main/utils.py and change the value of 'addr' in getInfoToken() function with the contract address taken from ganache or from the result of command line.
 
-5)Now create the superuser with which to access to control panel.
+5)Now create the superuser with which to access to control panel by running "python or python3 manage.py shell" command.
 
 6)Finally run "python or python3 manage.py runserver" command.
 
